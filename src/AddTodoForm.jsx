@@ -1,9 +1,12 @@
-function AddTodoForm() {
+function AddTodoForm(props) {
+
     function handleAddTodo(event){
        event.preventDefault();
-
+      
        const todoTitle = event.target.title.value;
        console.log(todoTitle);
+                                    
+       props.onAddTodo(todoTitle);
     }
     return (
         <>
