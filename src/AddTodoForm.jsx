@@ -1,12 +1,18 @@
-function AddTodoForm(props) {
+import { useState } from "react";
 
+function AddTodoForm({onAddTodo}) {
+    const [todoTitle, setTodoTitle] = useState('');
+    
+function handleTitleChange(event){
+    const newTodoTitle = (event.target.value);
+    setTodoTitle(newTodoTitle);
+}
     function handleAddTodo(event){
        event.preventDefault();
-      
-       const todoTitle = event.target.title.value;
        console.log(todoTitle);
        
-       props.onAddTodo(todoTitle);
+       onAddTodo({title: todoTitle, id: Date.now() });
+       setTodoTitle('');
     }
     return (
         <>
@@ -18,6 +24,8 @@ function AddTodoForm(props) {
                     type = "text"
                     name = "title"
                     placeholder="New Todo:"
+                    value = {todoTitle}
+                    onChange = {handleTitleChange}
                     />
                 </label>
                 <hr/>
